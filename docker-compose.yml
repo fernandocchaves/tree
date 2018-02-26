@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.6
+    volumes_from:
+      - data
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tree
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+
+  data:
+    image: cogniteev/echo
+    command: echo 'Data Container for PostgreSQL'
+    volumes:
+      - /var/lib/mysql/data
